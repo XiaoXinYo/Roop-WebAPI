@@ -1,0 +1,8 @@
+gevent
+gunicorn
+flask
+flask_cors
+flask_apscheduler
+redis
+
+-r ./roop/requirements.txt
