@@ -44,19 +44,17 @@ def queueDequeue() -> Optional[str]:
         return token.decode()
     return None
 
-def setTaskState(token: str, state: core.State) -> bool:
+def setTaskState(token: str, state: core.State) -> None:
     task = getTask(token)
     if task:
         task['state'] = state
         REDIS.hset(TASK_KEY, token, json.dumps(task))
         REDIS.save()
-        return True
-    return False
 
-def deleteTask(token: str) -> bool:
+def deleteTask(token: str) -> None:
     REDIS.hdel(TASK_KEY, token)
-    return REDIS.save()
+    REDIS.save()
 
-def deleteQueue(token: str) -> bool:
+def deleteQueue(token: str) -> None:
     REDIS.lrem(QUEUE_KEY, 0, token)
-    return REDIS.save()
+    REDIS.save()

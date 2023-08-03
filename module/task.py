@@ -21,19 +21,18 @@ def process() -> None:
 
         redis.setTaskState(token, core.State.ING)
         task = redis.getTask(token)
-        sourceFilePath = f'{config.INPUT_FOLDER_PATH}/{token}_source.{task["sourceFormat"]}' if task[
-            'sourceFormat'] else None
+        sourceFilePath = f'{config.INPUT_FOLDER_PATH}/{token}_source.{task["sourceFormat"]}' if task['sourceFormat'] else None
         targetFilePath = f'{config.INPUT_FOLDER_PATH}/{token}_target.{task["targetFormat"]}'
         outputFilePath = f'{config.OUTPUT_FOLDER_PATH}/{token}.{task["targetFormat"]}'
         modes = task['modes']
         parameter = task['parameter']
         frameProcessor = []
         if 'replace' in modes:
-            frameProcessor.append(f'face_swapper')
+            frameProcessor.append('face_swapper')
         if 'enhance' in modes:
-            frameProcessor.append(f'face_enhancer')
-        command = [
-            config.PYTHON_FILE_PATH,
+            frameProcessor.append('face_enhancer')
+        commands = [
+            config.ROOP_PYTHON_FILE_PATH,
             config.ROOP_FILE_PATH,
             '-s', sourceFilePath if sourceFilePath else 'null',
             '-t', targetFilePath,
@@ -45,14 +44,14 @@ def process() -> None:
             '--execution-threads', str(config.PROCESSOR_THREAD_NUMBER)
         ]
         if parameter['keepFPS']:
-            command.append('--keep-fps')
+            commands.append('--keep-fps')
         if parameter['skipAudio']:
-            command.append('--skip-audio')
+            commands.append('--skip-audio')
         if parameter['manyFace']:
-            command.append('--many-faces')
+            commands.append('--many-faces')
         try:
-            result = subprocess.run(command, capture_output=True)
-            if 'succeed' in result.stdout.decode('utf-8'):
+            process_ = subprocess.run(commands, capture_output=True)
+            if 'succeed' in process_.stdout.decode('utf-8'):
                 redis.setTaskState(token, core.State.SUCCESS)
             else:
                 redis.setTaskState(token, core.State.FAIL)

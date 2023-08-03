@@ -1,0 +1,56 @@
+name: Bug Report
+description: Bug Report
+title: '[Bug]:'
+body:
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Please ensure the following before submitting
+      options:
+        - label: The Roop WebAPI is the latest version
+          required: true
+        - label: Unable to find it in Issue
+          required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      multiple: true
+      options:
+        - Linux
+        - Windows
+        - MacOS
+        - Android
+        - iOS
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      description: '`python3 -V`'
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger
+      description: How to trigger this issue(Such as providing code).
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Error Report
+      description: Provide error output.
+  - type: textarea
+    id: other
+    attributes:
+      label: Other

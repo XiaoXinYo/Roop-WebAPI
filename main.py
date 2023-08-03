@@ -38,7 +38,9 @@ def submit() -> Response:
         return core.GenerateResponse().error(110, 'the target file size exceeds the max limit')
 
     token = str(uuid.uuid4())
+    needSource = False
     if 'replace' in modes:
+        needSource = True
         if not source:
             return core.GenerateResponse().error(110, 'parameter cannot be empty')
         sourceFormat = source.filename.split('.')[-1]
@@ -48,7 +50,7 @@ def submit() -> Response:
             return core.GenerateResponse().error(110, 'the source file size exceeds the max limit')
         source.save(f'{config.INPUT_FOLDER_PATH}/{token}_source.{sourceFormat}')
     target.save(f'{config.INPUT_FOLDER_PATH}/{token}_target.{targetFormat}')
-    redis.add(token, targetFormat, sourceFormat if source else None, modes, {
+    redis.add(token, targetFormat, sourceFormat if needSource else None, modes, {
         'keepFPS': bool(keepFPS),
         'skipAudio': bool(skipAudio),
         'manyFace': bool(manyFace)
@@ -100,12 +102,12 @@ def download() -> Response:
 @APSCHEDULER.task('interval', minutes=3)
 def removeDoneTask() -> None:
     tasks = redis.getTasks()
-    for task in tasks:
+    for token, task in tasks:
         if task['state'] == core.State.SUCCESS or task['state'] == core.State.FAIL:
             if auxiliary.getTimestamp() - task['timestamp'] > config.TASK_DONE_SAVE_TIME * 60:
                 redis.deleteTask(task['token'])
                 auxiliary.removeFile(f'{config.OUTPUT_FOLDER_PATH}/{task["token"]}.{task["targetFormat"]}')
 
+APSCHEDULER.start()
 if __name__ == '__main__':
-    APSCHEDULER.start()
     APP.run(host=config.HTTP['host'], port=config.HTTP['port'], debug=True)

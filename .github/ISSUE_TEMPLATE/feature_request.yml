@@ -1,0 +1,17 @@
+name: Feature Request
+description: Feature Request
+title: '[Feature]:'
+body:
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Please ensure the following before submitting
+      options:
+        - label: Unable to find it in Issue
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true

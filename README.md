@@ -12,6 +12,18 @@ WebUI: [Coaixy/Roop-WebUI](https://github.com/Coaixy/Roop-WebUI)
 ## Config
 Enter the config.py file view.
 ## Arrange
-1. Windows: run main.py.
-2. Linux: execute `gunicorn main:APP -c gunicorn.py`.
+### Step
+1. Install Python3.8+.
+3. Download the corresponding version of the Loop and copy it into the Loop folder.
+2. Install FFmpeg.
+3. Install Cuda(If Nvidia GPU is used).
+4. Install Redis.
+5. Install Visual Studio,then install C++ desktop development dependencies(If the platform is Windows).
+6. install the Roop python package.
+7. Install the Roop-WebAPI python package.
+8. Configure the config.py file.
+9. Run(The first task execution will download dependencies).
+### Run
+1. Windows: run wsgi.py file.
+2. Linux: execute `gunicorn main:APP -c gunicorn.py` command.
 3. Support Docker.
