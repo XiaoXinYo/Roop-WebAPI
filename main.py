@@ -105,8 +105,8 @@ def removeDoneTask() -> None:
     for token, task in tasks:
         if task['state'] == core.State.SUCCESS or task['state'] == core.State.FAIL:
             if auxiliary.getTimestamp() - task['timestamp'] > config.TASK_DONE_SAVE_TIME * 60:
-                redis.deleteTask(task['token'])
-                auxiliary.removeFile(f'{config.OUTPUT_FOLDER_PATH}/{task["token"]}.{task["targetFormat"]}')
+                redis.deleteTask(token)
+                auxiliary.removeFile(f'{config.OUTPUT_FOLDER_PATH}/{token}.{task["targetFormat"]}')
 
 APSCHEDULER.start()
 if __name__ == '__main__':
