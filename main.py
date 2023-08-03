@@ -102,7 +102,7 @@ def download() -> Response:
 @APSCHEDULER.task('interval', minutes=3)
 def removeDoneTask() -> None:
     tasks = redis.getTasks()
-    for token, task in tasks:
+    for token, task in tasks.items():
         if task['state'] == core.State.SUCCESS or task['state'] == core.State.FAIL:
             if auxiliary.getTimestamp() - task['timestamp'] > config.TASK_DONE_SAVE_TIME * 60:
                 redis.deleteTask(token)
