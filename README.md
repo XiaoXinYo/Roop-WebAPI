@@ -1,7 +1,7 @@
 ![Release](https://img.shields.io/badge/Release-0.1.0-blue)
 ---
 ## Introduce
-[S0md3v/oop](https://github.com/s0md3v/roop) WebAPI.  
+[S0md3v/Roop](https://github.com/s0md3v/roop) WebAPI.  
 WebUI: [Coaixy/Roop-WebUI-V](https://github.com/Coaixy/Roop-WebUI-V)
 ## Demand
 1. Platform: Windows/Linux/Docker.
