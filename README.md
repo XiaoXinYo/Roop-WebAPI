@@ -1,16 +1,16 @@
 ![Release](https://img.shields.io/badge/Release-0.1.0-blue)
 ---
 ## Introduce
-[S0md3v/loop](https://github.com/s0md3v/roop) WebAPI.  
+[s0md3v/loop](https://github.com/s0md3v/roop) WebAPI.  
 WebUI: [Coaixy/Roop-WebUI-V](https://github.com/Coaixy/Roop-WebUI-V)
 ## Demand
-1. Platform: Windows/Linux/Docker.
+1. Platform: Windows/Linux.
 2. Language: Python3.8+.
 3. Package: gunicorn,gevent,flask,flask_cors,flask_apscheduler,redis.
 4. Database: Redis.
 5. Other: Roop(Including What It Requires).
 ## Config
-Enter the config.py file view.
+View config.py file.
 ## Arrange
 ### Step
 1. Install Python3.8+.
@@ -26,4 +26,5 @@ Enter the config.py file view.
 ### Run
 1. Windows: run wsgi.py file.
 2. Linux: execute `gunicorn main:APP -c gunicorn.py` command.
-3. Support Docker.
+## WebAPI Document
+View [Wiki](https://github.com/XiaoXinYo/Roop-WebAPI/wiki).
