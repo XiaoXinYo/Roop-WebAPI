@@ -32,7 +32,8 @@ def submit() -> Response:
         return core.GenerateResponse().error(110, 'parameter cannot be empty')
 
     targetFormat = target.filename.split('.')[-1]
-    if targetFormat not in ['png', 'jpg', 'mp4']:
+    targetFormat = targetFormat.lower()
+    if targetFormat not in ['png', 'jpeg', 'jpg', 'mp4']:
         return core.GenerateResponse().error(110, 'the target file format is not supported')
     elif target.content_length > config.INPUT_FILE_MAX_SIZE * 1024:
         return core.GenerateResponse().error(110, 'the target file size exceeds the max limit')
@@ -44,7 +45,8 @@ def submit() -> Response:
         if not source:
             return core.GenerateResponse().error(110, 'parameter cannot be empty')
         sourceFormat = source.filename.split('.')[-1]
-        if sourceFormat not in ['png', 'jpg']:
+        sourceFormat = sourceFormat.lower()
+        if sourceFormat not in ['png', 'jpeg', 'jpg']:
             return core.GenerateResponse().error(110, 'the source file format is not supported')
         elif source.content_length > config.INPUT_FILE_MAX_SIZE * 1024:
             return core.GenerateResponse().error(110, 'the source file size exceeds the max limit')
