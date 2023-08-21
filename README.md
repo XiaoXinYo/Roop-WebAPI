@@ -1,7 +1,7 @@
-![Release](https://img.shields.io/badge/Release-0.1.1-blue)
+![Release](https://img.shields.io/badge/Release-0.1.2-blue)
 ---
 ## Introduce
-[s0md3v/loop](https://github.com/s0md3v/roop) WebAPI.  
+[s0md3v/roop](https://github.com/s0md3v/roop) WebAPI.  
 WebUI: [Coaixy/Roop-WebUI-V](https://github.com/Coaixy/Roop-WebUI-V)
 ## Demand
 1. Platform: Windows/Linux.
@@ -14,7 +14,7 @@ View config.py file.
 ## Arrange
 ### Step
 1. Install Python3.8+.
-3. Download the corresponding version of the Loop and copy it into the Loop folder.
+3. Download the corresponding version of the Roop and copy it into the roop folder.
 2. Install FFmpeg.
 3. Install Cuda(If Nvidia GPU is used).
 4. Install Redis.
