@@ -23,7 +23,7 @@ def error500(error: Exception) -> Response:
 def submit() -> Response:
     target = request.files.get('target')
     source = request.files.get('source')
-    parameter = core.getRequestParameter(request)
+    parameter = request.form
     modes = request.form.getlist('modes')
     keepFPS = parameter.get('keepFPS', False)
     skipAudio = parameter.get('skipAudio', False)
@@ -59,7 +59,7 @@ def submit() -> Response:
     })
     return core.GenerateResponse().success(token)
 
-@APP.post('/delete')
+@APP.route('/delete', methods=['GET', 'POST'])
 def delete() -> Response:
     token = core.getRequestParameter(request).get('token')
     if not token:
@@ -77,8 +77,8 @@ def delete() -> Response:
     redis.deleteTask(token)
     return core.GenerateResponse().success('success')
 
-@APP.get('/get_state')
-def get_state() -> Response:
+@APP.route('/get_state', methods=['GET', 'POST'])
+def getState() -> Response:
     token = core.getRequestParameter(request).get('token')
     if not token:
         return core.GenerateResponse().error(110, 'parameter cannot be empty')
@@ -90,7 +90,7 @@ def get_state() -> Response:
 
 @APP.get('/download')
 def download() -> Response:
-    token = core.getRequestParameter(request).get('token')
+    token = request.get_json().get('token')
     if not token:
         return core.GenerateResponse().error(110, 'parameter cannot be empty')
 
