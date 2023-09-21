@@ -33,8 +33,8 @@ data|String|Token
 ## Delete
 ### Request
 1. Url: /delete.
-2. Method: POST.
-3. Format: JSON.
+2. Method: GET/POST.
+3. Format: JSON(When the method is POST).
 4. Parameter:
 
 Name|Type|Require|Illustrate
@@ -60,8 +60,9 @@ data|String|
 ## Get State
 ### Request
 1. Url: /get_state.
-2. Method: GET.
-3. Parameter:
+2. Method: GET/POST. 
+3. Format: JSON(When the method is POST).
+4. Parameter:
 
 Name|Type|Require|Illustrate
 ---|---|---|---
