@@ -6,9 +6,7 @@ def getRequestParameter(request: request) -> dict:
     if request.method == 'GET':
         data = request.args
     elif request.method == 'POST':
-        data = request.form
-        if not data:
-            data = request.get_json()
+        data = request.get_json()
     return dict(data)
 
 class GenerateResponse:
