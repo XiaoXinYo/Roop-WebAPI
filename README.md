@@ -1,4 +1,4 @@
-![Release](https://img.shields.io/badge/Release-0.1.4-blue)
+![Release](https://img.shields.io/badge/Release-0.1.6-blue)
 ---
 ## Introduce
 [s0md3v/roop](https://github.com/s0md3v/roop) WebAPI.  
